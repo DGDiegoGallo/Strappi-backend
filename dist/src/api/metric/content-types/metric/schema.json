@@ -1,0 +1,37 @@
+{
+    "kind": "collectionType",
+    "collectionName": "metrics",
+    "info": {
+        "singularName": "metric",
+        "pluralName": "metrics",
+        "displayName": "metric"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string"
+        },
+        "value": {
+            "type": "decimal"
+        },
+        "page": {
+            "type": "string"
+        },
+        "device": {
+            "type": "enumeration",
+            "enum": [
+                "desktop",
+                "mobile"
+            ]
+        },
+        "timestamp": {
+            "type": "datetime"
+        },
+        "report": {
+            "type": "json"
+        }
+    }
+}

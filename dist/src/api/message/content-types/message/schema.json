@@ -1,0 +1,57 @@
+{
+    "kind": "collectionType",
+    "collectionName": "messages",
+    "info": {
+        "singularName": "message",
+        "pluralName": "messages",
+        "displayName": "Message"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string"
+        },
+        "type": {
+            "type": "enumeration",
+            "enum": [
+                "group",
+                "channel",
+                "event"
+            ]
+        },
+        "status_of_channel": {
+            "type": "enumeration",
+            "enum": [
+                "active",
+                "inactive"
+            ]
+        },
+        "sender_info": {
+            "type": "json"
+        },
+        "content": {
+            "type": "json"
+        },
+        "bot_interaction": {
+            "type": "json"
+        },
+        "group_member": {
+            "type": "json"
+        },
+        "company": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::company.company",
+            "inversedBy": "messages"
+        },
+        "users_permissions_users": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "messages"
+        }
+    }
+}
