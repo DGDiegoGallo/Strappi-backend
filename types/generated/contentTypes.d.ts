@@ -549,6 +549,43 @@ export interface ApiPromptPrompt extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiUserWalletUserWallet extends Struct.CollectionTypeSchema {
+  collectionName: 'user_wallets';
+  info: {
+    displayName: 'User_Wallet';
+    pluralName: 'user-wallets';
+    singularName: 'user-wallet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    encrypted_data: Schema.Attribute.JSON;
+    is_active: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-wallet.user-wallet'
+    > &
+      Schema.Attribute.Private;
+    pin_hash: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    transaction_history: Schema.Attribute.JSON;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    usdt_balance: Schema.Attribute.Decimal;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    wallet_address: Schema.Attribute.String;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1047,6 +1084,10 @@ export interface PluginUsersPermissionsUser
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user_wallet: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::user-wallet.user-wallet'
+    >;
     username: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
@@ -1071,6 +1112,7 @@ declare module '@strapi/strapi' {
       'api::message.message': ApiMessageMessage;
       'api::metric.metric': ApiMetricMetric;
       'api::prompt.prompt': ApiPromptPrompt;
+      'api::user-wallet.user-wallet': ApiUserWalletUserWallet;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

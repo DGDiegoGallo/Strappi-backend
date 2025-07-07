@@ -98,6 +98,12 @@
             "relation": "manyToMany",
             "target": "api::message.message",
             "mappedBy": "users_permissions_users"
+        },
+        "user_wallet": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::user-wallet.user-wallet",
+            "mappedBy": "users_permissions_user"
         }
     }
 }

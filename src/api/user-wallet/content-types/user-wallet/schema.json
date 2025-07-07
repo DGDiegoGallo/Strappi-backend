@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_wallets",
+  "info": {
+    "singularName": "user-wallet",
+    "pluralName": "user-wallets",
+    "displayName": "User_Wallet"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "user_wallet"
+    },
+    "wallet_address": {
+      "type": "string"
+    },
+    "usdt_balance": {
+      "type": "decimal"
+    },
+    "pin_hash": {
+      "type": "string"
+    },
+    "encrypted_data": {
+      "type": "json"
+    },
+    "transaction_history": {
+      "type": "json"
+    },
+    "is_active": {
+      "type": "boolean"
+    }
+  }
+}
